@@ -1,5 +1,7 @@
 package csie.ase.ro.classes;
 
+import java.util.Objects;
+
 public class Car implements Comparable<Car> {
 	private String color;
 	private int capacity;
@@ -60,18 +62,33 @@ public class Car implements Comparable<Car> {
 
 	@Override
 	public int hashCode() {
-		return manufacturer.hashCode();
+		return Objects.hash(manufacturer);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Car) {
-			Car c = (Car) obj;
-			return manufacturer.equals(c.manufacturer);
-		} else {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
-
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		return Objects.equals(manufacturer, other.manufacturer);
 	}
+
+	/*
+	 * @Override public int hashCode() { return manufacturer.hashCode(); }
+	 * 
+	 * @Override public boolean equals(Object obj) { if (obj instanceof Car) { Car c
+	 * = (Car) obj; return manufacturer.equals(c.manufacturer); } else { return
+	 * false; }
+	 * 
+	 * }
+	 */
+	
+	
+	
+	
 
 }
